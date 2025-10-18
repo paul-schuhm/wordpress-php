@@ -1,13 +1,19 @@
 # Kit de développement WordPress
 
-
 <!-- 
 A finir :
+wordpress [x]
+mailhog acces http [x]
+adminer acces http [x]
+wp-cli acces a db []
+envoi email [x]
+pipeline gulp []
+php.ini utilisé ?
 phpStan
 phpCodingStandard
-wp-cli
 gulp svg ?
 composer et var_dump()
+Image Gulp optimisée [x]
  -->
 
 

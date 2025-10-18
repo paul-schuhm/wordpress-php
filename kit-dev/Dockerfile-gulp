@@ -1,0 +1,14 @@
+FROM node:alpine
+
+RUN mkdir -p /usr/src/app/
+WORKDIR /usr/src/app/
+COPY package.json ./
+
+RUN npm install -g gulp-cli \
+ && npm install gulp sass gulp-sass --save-dev --no-cache \
+ && npm install --no-cache \
+ && npm update \
+ && gulp --version
+
+
+

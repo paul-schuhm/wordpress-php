@@ -1,0 +1,20 @@
+{
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpstan/phpstan": "^2.1",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "phpstan/extension-installer": "^1.4"
+    },
+    "require": {
+        "phpcsstandards/phpcsutils": "@alpha",
+        "phpcsstandards/phpcsextra": "@alpha",
+        "phpdocumentor/shim": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "phpdocumentor/shim": true
+        }
+    }
+}

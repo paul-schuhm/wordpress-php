@@ -1,0 +1,90 @@
+services:
+
+  wordpress:
+  
+    build:
+      context: ./
+      dockerfile: Dockerfile-wp
+    depends_on:
+      - db
+    restart: always
+    user: "${UID}:${GID}"
+    env_file:
+      - .env
+    volumes:
+      - ./web/:/var/www/html/:rw
+      - ./php-dev.ini:/usr/local/etc/php/conf.d/php.ini
+    ports:
+      - 8080:80
+    networks:
+      - formation
+    container_name: ${PROJECT_NAME}-wordpress
+
+  db:
+    image: mysql:8.4.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    container_name: ${PROJECT_NAME}-mysql
+    networks:
+      - formation
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      - db
+    container_name: ${PROJECT_NAME}-adminer
+    networks:
+      - formation
+  wpcli:
+    image: wordpress:cli
+    command: "--path=/var/www/html/"
+    volumes:
+      - ./web/:/var/www/html/
+    depends_on:
+      - wordpress
+    container_name: ${PROJECT_NAME}-wpcli
+    networks:
+      - formation
+    env_file:
+      - .env
+  gulp:
+    build:
+      context: ./
+      dockerfile: Dockerfile-gulp
+    tty: true
+    restart: always
+    volumes:
+      - ./gulpfile.js:/usr/src/app/gulpfile.js
+      - ./src:/usr/src/app/src
+      - ./web/wp-content/themes/:/usr/src/app/web/wp-content/themes
+    depends_on:
+      - wordpress
+    container_name: ${PROJECT_NAME}-gulp
+    networks:
+      - formation
+    
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+        - "${MAIL_SMTP_PORT}:1025"
+        - "${MAIL_HTTP_PORT}:8025"
+    container_name: ${PROJECT_NAME}-mailhog
+    networks:
+      - formation
+
+networks:
+  formation:
+    driver: bridge
+
+volumes:
+  web:
+  mysql-data:

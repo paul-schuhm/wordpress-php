@@ -1,0 +1,17 @@
+{
+    "name": "paul/mon_theme",
+    "autoload": {
+        "psr-4": {
+            "Paul\\MonTheme\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "paul schuhmacher",
+            "email": "contact@pschuhmacher.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^7.3"
+    }
+}

@@ -1,22 +1,5 @@
 # Kit de développement WordPress
 
-<!-- 
-A finir :
-wordpress [x]
-mailhog acces http [x]
-adminer acces http [x]
-wp-cli acces a db []
-envoi email [x]
-pipeline gulp []
-php.ini utilisé ?
-phpStan
-phpCodingStandard
-gulp svg ?
-composer et var_dump()
-Image Gulp optimisée [x]
- -->
-
-
 - [Kit de développement WordPress](#kit-de-développement-wordpress)
   - [Pré-requis](#pré-requis)
   - [Configuration (première installation)](#configuration-première-installation)
@@ -26,17 +9,23 @@ Image Gulp optimisée [x]
   - [Compilation des assets avec Gulp](#compilation-des-assets-avec-gulp)
   - [wp-cli](#wp-cli)
   - [Environnement de test pour l'envoi d'emails, avec Mailhog](#environnement-de-test-pour-lenvoi-demails-avec-mailhog)
-  - [Coding standards WordPress avec phpcs et phpcbf](#coding-standards-wordpress-avec-phpcs-et-phpcbf)
+  - [Coding standards WordPress avec phpcs et phpcbf (phpCodeSniffer)](#coding-standards-wordpress-avec-phpcs-et-phpcbf-phpcodesniffer)
   - [Analyse statique du code](#analyse-statique-du-code)
+  - [Génération de la documentation du thème avec phpDocumentor](#génération-de-la-documentation-du-thème-avec-phpdocumentor)
   - [Remarques](#remarques)
     - [Permissions d'écriture dans le dossier `web`](#permissions-décriture-dans-le-dossier-web)
   - [Références](#références)
+    - [Images Docker et services utilisés](#images-docker-et-services-utilisés)
+    - [CI](#ci)
+      - [Linter](#linter)
+      - [Analyse statique de code](#analyse-statique-de-code)
+      - [Générateur de documentation à partir du code](#générateur-de-documentation-à-partir-du-code)
 
 
 ## Pré-requis
 
-1. Installer [composer](https://getcomposer.org/) globalement
-2. 3 (Optionnel) Si vous utilisez VS Code, installer les extensions [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour configurer PHP_CodeSniffer correctement.
+1. Installer [Composer](https://getcomposer.org/) globalement
+2. (Optionnel) Si vous utilisez VS Code, installer les extensions [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour configurer PHP_CodeSniffer correctement.
 
 ## Configuration (première installation)
 
@@ -45,6 +34,7 @@ Cloner le dépôt, puis créer les fichiers suivants :
 ~~~bash
 cp .env.dist .env
 mkdir -p web
+composer install
 ~~~
 
 ## Lancer le projet
@@ -115,14 +105,15 @@ Tester avec la commande :
 - On envoie des mails suivant le protocole SMTP via le serveur SMTP du conteneur WordPress, sur le port 1025
 - On accede au client mail via le serveur HTTP sur le port 8025
 
-## Coding standards WordPress avec phpcs et phpcbf
+## Coding standards WordPress avec phpcs et phpcbf (phpCodeSniffer)
 
-Le starter utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par phpCodeSniffer (celui-ci doit être installé globalement, ainsi que le standard). Le projet fournit des *settings* pour vscode pour les extensions [phpcs](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) et [phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf)
+Le kit utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par phpCodeSniffer (celui-ci doit être installé globalement, ainsi que le standard). Le projet fournit des *settings* pour vscode pour les extensions [phpcs](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) et [phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf)
 
 Sinon manuellement :
 
 ~~~bash
 phpcs --standard=WordPress web/wp-content/themes/mon-theme
+phpcbf --standard=WordPress web/wp-content/themes/mon_theme/
 ~~~
 
 ## Analyse statique du code
@@ -130,8 +121,19 @@ phpcs --standard=WordPress web/wp-content/themes/mon-theme
 Utiliser phpStan (s'assurer d'avoir fait `composer update` pour l'installer localement dans le projet)
 
 ~~~bash
-vendor/bin/phpstan analyse web/wp-content/themes/mon-theme/some-file.php
+vendor/bin/phpstan analyze -l8 web/wp-content/themes/mon_theme/
 ~~~
+
+> [Accéder à la documentation de phpStan](https://phpstan.org/user-guide/getting-started)
+
+## Génération de la documentation du thème avec phpDocumentor
+
+~~~bash
+vendor/bin/phpdoc run -d web/wp-content/mon_theme -t docs/theme
+vendor/bin/phpdoc run -d web/plugins/my_plugin -t docs/plugins
+~~~
+
+> [Accéder à la documentation de phpDocumentor](https://phpdoc.org/)
 
 ## Remarques
 
@@ -151,16 +153,35 @@ où `${UID}` et `${GID}` sont des variables d'environnement définies dans le `.
 
 ## Références
 
-- [Exemple d'installation Wordpress avec Docker](https://www.datanovia.com/en/fr/lessons/utilisation-de-docker-wordpress-cli-pour-gerer-les-sites-web-wordpress/#installer-wordpress-en-utilisant-le-docker-compose-et-wp-cli)
-- [Wordpress Docker official image](https://hub.docker.com/_/wordpress/)
+### Images Docker et services utilisés
+
 - [Mysql Docker official image](https://hub.docker.com/_/mysql)
+- [Wordpress Docker official image](https://hub.docker.com/_/wordpress/)
+- [MailHog](https://github.com/mailhog/MailHog), un mailcatcher
+- [Exemple d'installation Wordpress avec Docker](https://www.datanovia.com/en/fr/lessons/utilisation-de-docker-wordpress-cli-pour-gerer-les-sites-web-wordpress/#installer-wordpress-en-utilisant-le-docker-compose-et-wp-cli)
+
+### CI
+
+Outils pour maintenir une bonne qualité de code avant mise en production
+
+#### Linter
+
 - [Dépot Wordpress coding standards](https://github.com/WordPress/WordPress-Coding-Standards/tree/develop/WordPress)
 - [Setting up WordPress Coding Standards in VS Code](https://www.edmundcwm.com/setting-up-wordpress-coding-standards-in-vs-code/)
+- [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer), linter PHP
 - [Setting Up PHP CodeSniffer in Visual Studio Code](https://tommcfarlin.com/php-codesniffer-in-visual-studio-code/)
 - [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) : extension Phpcodesniffer pour vscode
 - [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) : extension pour configurer `phpcbf` script frère de `phpcs` pour beautifer et fixer le code PHP selon le standard choisi
-- [MailHog](https://github.com/mailhog/MailHog), un mailcatcher
+
+#### Analyse statique de code
+
+- [PhpStan](https://phpstan.org/), outil très puissant pour analyser le code et détecter des bugs/erreurs de manière statique;
 - [Using PHPStan in a WordPress project](https://pascalbirchler.com/phpstan-wordpress/)
+
+
+#### Générateur de documentation à partir du code
+
+- [phpDocumentor](https://phpdoc.org/)
 
 
 

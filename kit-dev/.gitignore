@@ -1,3 +1,47 @@
+# Exclude all /web
+web/*
+
+# Excluse mysql volume
+db
+
+# Except /web/wp-content/
+!/web/wp-content/
+
+# Exclude all wp-content
+/web/wp-content/*
+
+# Except themes folder
+!/web/wp-content/themes/
+
+# Exclude all themes
+/web/wp-content/themes/*
+
+# Except the theme
+!/web/wp-content/themes/mon_theme/
+!/web/wp-content/themes/mon_theme/acf-json
+
+# Except plugins folder
+!/web/wp-content/plugins/
+# Exclude mu plugins
+/web/wp-content/plugins/*
+!/web/wp-content/mu-plugins
+
+# Exclude all temporary or local files
 .env
-web/
-local-ressources/
+.sass-cache
+node_modules/*
+.DS_Store
+.idea/
+.phpdoc
+_notes
+
+# Exclude vendor
+vendor
+
+# Exclude local-ressource content
+local-ressources
+!/local-ressources/README.md
+migrate/*
+
+# Exclude doc
+docs

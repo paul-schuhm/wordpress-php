@@ -84,17 +84,17 @@ Adapter en fonction des besoins le programme [`gulpfile.js`](./gulpfile.js).
 Pour exécuter une commande de `wp-cli` depuis le conteneur :
 
 ```bash
-    docker compose run --rm wpcli
+docker compose run --rm wpcli
 ```
 Créer un alias dans `~/.bash_aliases` :
 
 ```bash
-    wp=docker compose run --rm wpcli
+wp=docker compose run --rm wpcli
 ```
 
 Tester avec la commande :
 ```bash
-    wp cli version
+wp cli version
 ```
 > Bien vérifier que `wp-cli` est sur le même réseau Docker que le reste du projet, sinon il ne pourra pas accéder à l’hôte mysql.
 

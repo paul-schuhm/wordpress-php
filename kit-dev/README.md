@@ -70,7 +70,7 @@ La base de données `wordpress` est créée automatiquement par le service `db`.
 Pour gérer les assets (scss, css, js, blocks, etc.) et les watcher, lancer le conteneur [gulp](https://gulpjs.com/):
 
 ~~~bash
-docker exec -it {nom du projet}-gulp gulp
+docker compose exec -it gulp gulp
 ~~~
 
 À chaque sauvegarde d'un fichier source d'asset, les *watcher* vont faire leur travail (recompilation => minification => copie dans les assets du thème).
@@ -84,12 +84,12 @@ Adapter en fonction des besoins le programme [`gulpfile.js`](./gulpfile.js).
 Pour exécuter une commande de `wp-cli` depuis le conteneur :
 
 ```bash
-    docker-compose run --rm wpcli
+    docker compose run --rm wpcli
 ```
 Créer un alias dans `~/.bash_aliases` :
 
 ```bash
-    wp=docker-compose run --rm wpcli
+    wp=docker compose run --rm wpcli
 ```
 
 Tester avec la commande :

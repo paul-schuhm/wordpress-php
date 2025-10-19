@@ -1,17 +1,18 @@
 # WordPress - PHP
 
 - [WordPress - PHP](#wordpress---php)
-  - [Environnement de développement](#environnement-de-développement)
+  - [Kit de développement](#kit-de-développement)
   - [Démos](#démos)
   - [Liens utiles](#liens-utiles)
-  - [Bibliographie](#bibliographie)
+  - [Bibliographie pour aller plus loin](#bibliographie-pour-aller-plus-loin)
 
 
+## Kit de développement
 
-## Environnement de développement
+[Accéder au kit](./kit-dev/)
 
 ## Démos
 
 ## Liens utiles
 
-## Bibliographie
+## Bibliographie pour aller plus loin

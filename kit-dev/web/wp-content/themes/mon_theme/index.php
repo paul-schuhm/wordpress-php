@@ -13,8 +13,11 @@ add_filter(
     }
 );
 
+$theme = wp_get_theme();
+echo sprintf("<p>Thème activé : %s</p>", $theme->get('Name'));
+
 if (wp_mail('test@example.com', 'MailHog test', 'Hello from WordPress')) {
-    echo '<p>email sent !</p>';
+    echo '<p>Un email de test a bien été envoyé ! <a href="http://localhost:8025">Le consulter dans le mailcatcher </a> </p>';
 } else {
-    echo '<p>Error: email not sent !</p>';
+    echo "<p>Erreur : l'email de test n'a pas été envoyé :( Il va falloir vérifier la configuration du serveur mail... !</p>";
 }

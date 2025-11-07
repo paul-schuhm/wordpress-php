@@ -45,6 +45,12 @@ composer install
 docker compose up -d
 ~~~
 
+Vérifier que tous les conteneurs sont actifs :
+
+~~~bash
+docker compose ps
+~~~
+
 Accéder :
 
 - À [WordPress](http://localhost:8080) : http://localhost:8080. Suivre les instructions pour installer la base de données. Dans les réglages, activer le thème `mon_theme`. Afficher la *home*.

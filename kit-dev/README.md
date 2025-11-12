@@ -73,7 +73,14 @@ La base de données `wordpress` est créée automatiquement par le service `db`.
 
 ## Compilation des assets avec Gulp
 
-Pour gérer les assets (scss, css, js, blocks, etc.) et les watcher, lancer le conteneur [gulp](https://gulpjs.com/):
+Créer les répertoires suivants s'ils n'existent pas :
+
+~~~bash
+mkdir -p src/mon_theme/blocks/scripts
+mkdir -p src/mon_theme/icons
+~~~
+
+Pour gérer les assets (scss, css, js, blocks, etc.) et les *watcher*, lancer le conteneur [gulp](https://gulpjs.com/) :
 
 ~~~bash
 docker compose exec -it gulp gulp

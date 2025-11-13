@@ -9,7 +9,7 @@
   - [Compilation des assets avec Gulp](#compilation-des-assets-avec-gulp)
   - [wp-cli](#wp-cli)
   - [Environnement de test pour l'envoi d'emails, avec Mailhog](#environnement-de-test-pour-lenvoi-demails-avec-mailhog)
-  - [Coding standards WordPress avec phpcs et phpcbf (phpCodeSniffer)](#coding-standards-wordpress-avec-phpcs-et-phpcbf-phpcodesniffer)
+  - [Coding standards WordPress avec PHP\_CodeSniffer](#coding-standards-wordpress-avec-php_codesniffer)
   - [Analyse statique du code](#analyse-statique-du-code)
   - [Génération de la documentation du thème avec phpDocumentor](#génération-de-la-documentation-du-thème-avec-phpdocumentor)
   - [Remarques](#remarques)
@@ -25,13 +25,14 @@
 ## Pré-requis
 
 1. Installer [Composer](https://getcomposer.org/), le gestionnaire de dépendances de PHP. Sera utilisé pour quelques outils (remarque : on pourrait les conteneuriser également...) ;
-2. (Optionnel) Si vous utilisez VS Code, installer les extensions [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour configurer PHP_CodeSniffer correctement.
+2. (Optionnel) Si vous utilisez VS Code, installer les extensions [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour utiliser PHP_CodeSniffer directement dans l'IDE.
 
 ## Configuration (première installation)
 
 Cloner le dépôt, puis créer les fichiers suivants :
 
 ~~~bash
+cd kit-dev
 cp .env.dist .env
 mkdir -p web
 composer install
@@ -80,7 +81,7 @@ mkdir -p src/mon_theme/blocks/scripts
 mkdir -p src/mon_theme/icons
 ~~~
 
-Pour gérer les assets (scss, css, js, blocks, etc.) et les *watcher*, lancer le conteneur [gulp](https://gulpjs.com/) :
+Pour gérer les *assets* (scss, css, js, blocks, etc.) et les *watcher*, lancer le conteneur [gulp](https://gulpjs.com/) :
 
 ~~~bash
 docker compose exec -it gulp gulp
@@ -118,23 +119,30 @@ wp cli version
 - On envoie des mails suivant le protocole SMTP via le serveur SMTP du conteneur WordPress, sur le port 1025
 - On accede au client mail via le serveur HTTP sur le port 8025
 
-## Coding standards WordPress avec phpcs et phpcbf (phpCodeSniffer)
+## Coding standards WordPress avec PHP_CodeSniffer
 
-Le kit utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par phpCodeSniffer (celui-ci doit être installé globalement, ainsi que le standard). Le projet fournit des *settings* pour vscode pour les extensions [phpcs](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) et [phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf)
+Le kit utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par le *linter* [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer/) (celui-ci doit être installé globalement, ainsi que le standard). 
+
+On peut installer les extensions [phpcs](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) et [phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour intégrer le linter **directement dans VS Code**, en tant que formateur par défaut.
 
 Sinon manuellement :
 
 ~~~bash
-phpcs --standard=WordPress web/wp-content/themes/mon-theme
-phpcbf --standard=WordPress web/wp-content/themes/mon_theme/
+# Linter votre theme
+./vendor/bin/phpcs --standard=WordPress web/wp-content/themes/mon-theme
+./vendor/bin/phpcbf --standard=WordPress web/wp-content/themes/mon-theme
+
+#Linter vos plugins
+./vendor/bin/phpcs --standard=WordPress web/wp-content/plugins/mon-plugin
+./vendor/bin/phpcbf --standard=WordPress web/wp-content/themes/mon-theme
 ~~~
 
 ## Analyse statique du code
 
-Utiliser phpStan (s'assurer d'avoir fait `composer update` pour l'installer localement dans le projet)
+Utiliser phpStan (s'assurer d'avoir fait `composer update` pour l'installer localement dans le projet) :
 
 ~~~bash
-vendor/bin/phpstan analyze -l8 web/wp-content/themes/mon_theme/
+./vendor/bin/phpstan analyze -l8 web/wp-content/themes/mon_theme/
 ~~~
 
 > [Accéder à la documentation de phpStan](https://phpstan.org/user-guide/getting-started)
@@ -142,8 +150,8 @@ vendor/bin/phpstan analyze -l8 web/wp-content/themes/mon_theme/
 ## Génération de la documentation du thème avec phpDocumentor
 
 ~~~bash
-vendor/bin/phpdoc run -d web/wp-content/mon_theme -t docs/theme
-vendor/bin/phpdoc run -d web/plugins/my_plugin -t docs/plugins
+./vendor/bin/phpdoc run -d web/wp-content/mon_theme -t docs/theme
+./vendor/bin/phpdoc run -d web/plugins/my_plugin -t docs/plugins
 ~~~
 
 > [Accéder à la documentation de phpDocumentor](https://phpdoc.org/)
@@ -152,7 +160,7 @@ vendor/bin/phpdoc run -d web/plugins/my_plugin -t docs/plugins
 
 ### Permissions d'écriture dans le dossier `web`
 
-Vérifier que vous donnez la propriété du volume/bind-mount `web` à votre utilisateur courant et non à `root`.
+Vérifier que vous donnez la propriété du *volume/bind-mount* `web` à votre utilisateur courant et non à `root`.
 
 ~~~yml
   wordpress:
@@ -160,9 +168,14 @@ Vérifier que vous donnez la propriété du volume/bind-mount `web` à votre uti
     user: "${UID}:${GID}"
 ~~~
 
-où `${UID}` et `${GID}` sont des variables d'environnement définies dans le `.env`. S'assurer que l'id de votre user et de votre groupe sur la machine hôte (avec la commande `id`).
+où `${UID}` et `${GID}` sont des variables d'environnement définies dans le `.env`. 
 
-> C'est pour cela que l'on crée à l'avance le dossier `web`, sinon Docker va le créer lui-même avec les droits root.
+S'assurer que l'id de votre user et de votre groupe sur la machine hôte (avec la commande `id`) correspondent à ceux renseignés dans le `.env`. Ils sont définis à `1000` dans le `.env`, valeur attribuée au premier utilisateur crée sur la machine (généralement le vôtre) sur les systèmes Unix .
+
+> C'est pour cela que l'on crée à l'avance le dossier `web`, sinon Docker va le créer lui-même avec les droits root. 
+
+
+> Non testé sur Windows ! Peut provoquer des problèmes notamment pour l'écriture des logs. Solution : ouvrir un bash sur le conteneur de wordpress et donner les droits à l'utilisateur du conteneur sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
 
 ## Références
 

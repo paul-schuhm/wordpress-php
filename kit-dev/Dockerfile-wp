@@ -1,13 +1,21 @@
 FROM wordpress:6.8.3-php8.2-apache
-#donner un nom à l'user du conteneur
-RUN groupadd -g 1000 myuser \
-    && useradd -u 1000 -g 1000 -m myuser
+
+# Remarque : ne fonctionnera pas sur windows
+RUN groupadd -g 1000 me \
+    && useradd -u 1000 -g 1000 -m me
+
 RUN apt-get update &&\
     apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git &&\
     rm -rf /var/lib/apt/lists/*
+
+#Installation et config du serveur smtp de mailhog pour le mailcatcher
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH=/usr/local/go/bin:$PATH
-#installation et config du serveur smtp de mailhog
 RUN go get github.com/mailhog/mhsendmail
 RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 RUN echo 'sendmail_path = /usr/bin/mhsendmail --smtp-addr mailhog:1025' > /usr/local/etc/php/php.ini
+
+# Ajoute configuration de PHP (notamment pour les logs)
+COPY php-wordpress.ini $PHP_INI_DIR/conf.d/
+RUN touch /var/log/wordpress.log && \
+    chown me:me /var/log/wordpress.log

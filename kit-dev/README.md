@@ -175,7 +175,7 @@ S'assurer que l'id de votre user et de votre groupe sur la machine hôte (avec l
 > C'est pour cela que l'on crée à l'avance le dossier `web`, sinon Docker va le créer lui-même avec les droits root. 
 
 
-> Non testé sur Windows ! Peut provoquer des problèmes notamment pour l'écriture des logs. Solution : 1) ouvrir un bash sur le conteneur de wordpress : `docker compose exec -it wordpress bash` 2) donner les droits à l'utilisateur du conteneur (`id`) sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
+> Non testé sur Windows ! **Peut provoquer des problèmes notamment pour l'écriture des logs**. Solution : 1) ouvrir un bash sur le conteneur de wordpress : `docker compose exec -it wordpress bash` 2) donner les droits à l'utilisateur du conteneur (`id`) sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
 
 ## Références
 

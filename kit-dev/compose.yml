@@ -13,7 +13,6 @@ services:
       - .env
     volumes:
       - ./web/:/var/www/html/:rw
-      - ./php-dev.ini:/usr/local/etc/php/conf.d/php.ini
     ports:
       - 8080:80
     networks:

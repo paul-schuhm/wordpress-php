@@ -2,6 +2,7 @@
 
 - [WordPress - PHP](#wordpress---php)
   - [Kit de développement](#kit-de-développement)
+  - [Supports de formation](#supports-de-formation)
   - [Démos](#démos)
   - [Liens utiles](#liens-utiles)
     - [Création de thèmes](#création-de-thèmes)
@@ -17,6 +18,11 @@
 ## Kit de développement
 
 [Accéder au kit](./kit-dev/)
+
+
+## Supports de formation
+
+[Accéder aux supports de formation](https://ftp.pschuhmacher.com/wordpress/)
 
 ## Démos
 

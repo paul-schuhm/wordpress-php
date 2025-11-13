@@ -42,7 +42,7 @@
 
 ## Bibliographie pour aller plus loin
 
-<img width=400 src="./assets/polar-book.png">
+<img width=300 src="./assets/polar-book.png">
 
 ### CMS et architecture de l'information
 

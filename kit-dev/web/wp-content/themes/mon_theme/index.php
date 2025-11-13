@@ -21,3 +21,5 @@ if (wp_mail('test@example.com', 'MailHog test', 'Hello from WordPress')) {
 } else {
     echo "<p>Erreur : l'email de test n'a pas été envoyé :( Il va falloir vérifier la configuration du serveur mail... !</p>";
 }
+
+error_log("Activer le mode (WP_DEBUG=1 et WP_DEBUG_LOG=1) pour écrire les logs de WordPress dans le fichier wp-content/debug.log (par défaut)");

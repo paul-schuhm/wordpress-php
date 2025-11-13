@@ -24,7 +24,7 @@
 
 ## Pré-requis
 
-1. Installer [Composer](https://getcomposer.org/) globalement
+1. Installer [Composer](https://getcomposer.org/), le gestionnaire de dépendances de PHP. Sera utilisé pour quelques outils (remarque : on pourrait les conteneuriser également...) ;
 2. (Optionnel) Si vous utilisez VS Code, installer les extensions [vscode-phpcs](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs) [vscode-phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour configurer PHP_CodeSniffer correctement.
 
 ## Configuration (première installation)

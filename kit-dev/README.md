@@ -191,10 +191,18 @@ où `${UID}` et `${GID}` sont des variables d'environnement définies dans le `.
 
 S'assurer que l'id de votre user et de votre groupe sur la machine hôte (avec la commande `id`) correspondent à ceux renseignés dans le `.env`. Ils sont définis à `1000` dans le `.env`, valeur attribuée au premier utilisateur crée sur la machine (généralement le vôtre) sur les systèmes Unix .
 
-> C'est pour cela que l'on crée à l'avance le dossier `web`, sinon Docker va le créer lui-même avec les droits root. 
+> C'est pour cela que l'on crée à l'avance le dossier `web`, sinon Docker va le créer lui-même avec les droits `root`. 
 
 
-> Non testé sur Windows ! **Peut provoquer des problèmes notamment pour l'écriture des logs**. Solution : 1) ouvrir un bash sur le conteneur de wordpress : `docker compose exec -it wordpress bash` 2) donner les droits à l'utilisateur du conteneur (`id`) sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
+**Non testé sur Windows !** **Peut provoquer des problèmes notamment pour l'écriture des logs !** 
+
+Solutions : 
+
+- Solution 1 : 
+  1. Ouvrir un bash sur le conteneur de wordpress : `docker compose exec -it wordpress bash`
+  2. Donner les droits à l'utilisateur du conteneur (`id`) sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
+
+- Solution 2 : utiliser `docker compose` **directement depuis la WSL** et non depuis une invite de commande Windows.
 
 ## Références
 

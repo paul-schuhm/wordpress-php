@@ -9,6 +9,7 @@
     - [Gestion des permaliens](#gestion-des-permaliens)
     - [PHP](#php)
   - [Bibliographie pour aller plus loin](#bibliographie-pour-aller-plus-loin)
+    - [CMS et architecture de l'information](#cms-et-architecture-de-linformation)
     - [WordPress](#wordpress)
     - [PHP](#php-1)
 
@@ -40,6 +41,12 @@
 - [Veille PHP](https://github.com/paul-schuhm/veille-php), un ensemble de ressources et d'articles pour faire de la veille sur l'écosystème PHP 
 
 ## Bibliographie pour aller plus loin
+
+<img width=400 src="./assets/polar-book.png">
+
+### CMS et architecture de l'information
+
+-  [Information Architecture for the World Wide Web 3rd Edition](https://www.oreilly.com/library/view/information-architecture-for/0596527349/), de Peter Morville et Louis Rosenfeld, publié chez O'Reilly Media, 2006;
 
 ### WordPress
 

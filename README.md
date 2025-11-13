@@ -46,11 +46,11 @@
 
 ### CMS et architecture de l'information
 
--  [Information Architecture for the World Wide Web 3rd Edition](https://www.oreilly.com/library/view/information-architecture-for/0596527349/), de Peter Morville et Louis Rosenfeld, publié chez O'Reilly Media, 2006;
+-  [Information Architecture for the World Wide Web 3rd Edition](https://www.oreilly.com/library/view/information-architecture-for/0596527349/), de Peter Morville et Louis Rosenfeld, publié chez O'Reilly Media, 2006; **LP++**
 
 ### WordPress
 
-- [Professional WordPress: Design and Development, 3rd Edition](https://www.amazon.com/Professional-WordPress-Development-Brad-Williams/dp/1118987241) de Brad Williams et David Damstra, publié aux éditions Wrox (Wiley), 2015;
+- [Professional WordPress: Design and Development, 3rd Edition](https://www.amazon.com/Professional-WordPress-Development-Brad-Williams/dp/1118987241) de Brad Williams et David Damstra, publié aux éditions Wrox (Wiley), 2015; **LP+**
 - [Professional WordPress Plugin Development, 2nd edition](https://www.amazon.com/Professional-WordPress-Plugin-Development-2nd/dp/1119666945) de Brad Williams et Justin Taldock, publié aux éditions Wrox (Wiley), 2020;
 
 ### PHP

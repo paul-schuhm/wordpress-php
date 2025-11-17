@@ -14,6 +14,7 @@
   - [Analyse statique du code](#analyse-statique-du-code)
   - [Génération de la documentation du thème avec phpDocumentor](#génération-de-la-documentation-du-thème-avec-phpdocumentor)
   - [Remarques](#remarques)
+    - [Image WordPress](#image-wordpress)
     - [Permissions d'écriture dans le dossier `web`](#permissions-décriture-dans-le-dossier-web)
   - [Références](#références)
     - [Images Docker et services utilisés](#images-docker-et-services-utilisés)
@@ -176,6 +177,14 @@ Utiliser phpStan (s'assurer d'avoir fait `composer update` pour l'installer loca
 > [Accéder à la documentation de phpDocumentor](https://phpdoc.org/)
 
 ## Remarques
+
+### Image WordPress
+
+WordPress tourne ici sous Apache avec `mod_php`, l'ancien mode d’exécution intégré à Apache. **Ce mode n’est pas recommandé en production**. On l’utilise en dev pour la simplicité et la rapidité de mise en place. Il est toujours utile pour tester rapidement le code et les extensions PHP.
+
+En environnement réel, on privilégiera [PHP-FPM](https://www.php.net/manual/fr/install.fpm.php) (ou [FrankenPHP](https://frankenphp.dev/)), plus moderne, isolé et performant.
+
+> Exercice : migrer l'image WordPress vers PHP-FPM ou FrankenPHP.
 
 ### Permissions d'écriture dans le dossier `web`
 

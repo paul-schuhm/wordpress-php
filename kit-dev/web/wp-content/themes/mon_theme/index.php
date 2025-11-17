@@ -10,19 +10,11 @@
  * @link     https://github.com/paul-schuhm/wordpress-php/tree/main/kit-dev
  */
 
-
 //require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Point d'entrée du thème
  */
-
-add_filter(
-    'wp_mail_from',
-    function () {
-        return 'formation@wordpress.local';
-    }
-);
 
 $theme = wp_get_theme();
 

@@ -27,3 +27,11 @@ if (wp_mail('test@example.com', 'MailHog test', 'Hello from WordPress')) {
 //error_log("test error_log(); avant crash");
 //trigger_error("Erreur volontaire", E_USER_ERROR);
 //error_log("Activer le mode (WP_DEBUG=1 et WP_DEBUG_LOG=1) pour écrire les logs de WordPress dans le fichier wp-content/debug.log (par défaut)");
+
+/*Vérifier la configuration du php.ini :
+     1) le module redis est bien activé ;
+     2) l'opcache est bien activé ;
+     3) la compression zlib est bien activée
+*/
+
+phpinfo();

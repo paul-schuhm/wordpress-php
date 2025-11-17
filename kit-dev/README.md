@@ -15,7 +15,9 @@
   - [Génération de la documentation du thème avec phpDocumentor](#génération-de-la-documentation-du-thème-avec-phpdocumentor)
   - [Remarques](#remarques)
     - [Image WordPress](#image-wordpress)
+    - [Configuration de la machine virtuelle PHP (php.ini)](#configuration-de-la-machine-virtuelle-php-phpini)
     - [Permissions d'écriture dans le dossier `web`](#permissions-décriture-dans-le-dossier-web)
+    - [Redis](#redis)
   - [Références](#références)
     - [Images Docker et services utilisés](#images-docker-et-services-utilisés)
     - [CI](#ci)
@@ -180,11 +182,15 @@ Utiliser phpStan (s'assurer d'avoir fait `composer update` pour l'installer loca
 
 ### Image WordPress
 
-WordPress tourne ici sous Apache avec `mod_php`, l'ancien mode d’exécution intégré à Apache. **Ce mode n’est pas recommandé en production**. On l’utilise en dev pour la simplicité et la rapidité de mise en place. Il est toujours utile pour tester rapidement le code et les extensions PHP.
+WordPress tourne ici sous Apache avec `mod_php` (*Server API : Apache 2.0 Handler*), l'ancien mode d’exécution intégré à Apache. **Ce mode n’est pas recommandé en production**. On l’utilise en dev pour la simplicité et la rapidité de mise en place. Il est toujours utile pour tester rapidement le code et les extensions PHP.
 
 En environnement réel, on privilégiera [PHP-FPM](https://www.php.net/manual/fr/install.fpm.php) (ou [FrankenPHP](https://frankenphp.dev/)), plus moderne, isolé et performant.
 
 > Exercice : migrer l'image WordPress vers PHP-FPM ou FrankenPHP.
+
+### Configuration de la machine virtuelle PHP (php.ini)
+
+[Le fichier de configuration `php-wordpress.ini`](./php-wordpress.ini) est monté en *bind-mount* sur le conteneur WordPress. Vous pouvez le modifier à votre guise pour tester différentes configurations. **Inutile de relancer le conteneur pour appliquer les changements**, la nouvelle configuration est immédiatement prise en compte.
 
 ### Permissions d'écriture dans le dossier `web`
 
@@ -211,7 +217,19 @@ Solutions :
   1. Ouvrir un bash sur le conteneur de wordpress : `docker compose exec -it wordpress bash`
   2. Donner les droits à l'utilisateur du conteneur (`id`) sur le fichier `wp-content/debug.log`, avec `chown -R user:group wp-content/debug.log`.
 
-- Solution 2 : utiliser `docker compose` **directement depuis la WSL** et non depuis une invite de commande Windows.
+- **Solution 2** : utiliser `docker compose` **directement depuis la WSL**, et non depuis une invite de commande Windows.
+ 
+### Redis
+
+Nous utilisons [Redis](https://fr.wikipedia.org/wiki/Redis) pour ajouter une couche de cache à WordPress.
+
+Tester la connexion entre les services wordpress et redis :
+
+~~~bash
+docker compose exec wordpress redis-cli -h redis ping
+~~~
+
+Doit afficher `PONG`.
 
 ## Références
 

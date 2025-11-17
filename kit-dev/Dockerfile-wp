@@ -1,14 +1,22 @@
 FROM wordpress:6.8.3-php8.2-apache
 
-# Remarque : ne fonctionnera pas sur windows
+# Remarque : Ne fonctionnera pas sur windows. Utiliser la WSL !
 RUN groupadd -g 1000 me \
     && useradd -u 1000 -g 1000 -m me
 
-RUN apt-get update &&\
-    apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git &&\
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+        ca-certificates \
+        curl \
+        git \
+        redis-tools && \
     rm -rf /var/lib/apt/lists/*
 
-#Installation et config du serveur smtp de mailhog pour le mailcatcher
+# Installation de l'extension php redis
+RUN pecl install redis \
+    && docker-php-ext-enable redis
+
+# Installation et config du serveur smtp de mailhog pour le mailcatcher
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH=/usr/local/go/bin:$PATH
 RUN go get github.com/mailhog/mhsendmail
@@ -16,6 +24,9 @@ RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 RUN echo 'sendmail_path = /usr/bin/mhsendmail --smtp-addr mailhog:1025' > /usr/local/etc/php/php.ini
 
 # Ajoute configuration de PHP (notamment pour les logs)
-COPY php-wordpress.ini $PHP_INI_DIR/conf.d/
 RUN touch /var/log/wordpress.log && \
     chown me:me /var/log/wordpress.log
+
+# Repertoire pour le cache disque d'opcache
+RUN mkdir -p /var/cache/opcache && \
+    chown me:me /var/cache/opcache

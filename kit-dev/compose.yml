@@ -7,12 +7,14 @@ services:
       dockerfile: Dockerfile-wp
     depends_on:
       - db
+      - redis
     restart: always
     user: "${UID}:${GID}"
     env_file:
       - .env
     volumes:
       - ./web/:/var/www/html/:rw
+      - ./php-wordpress.ini:/usr/local/etc/php/conf.d/php-wordpress.ini:ro
     ports:
       - 8080:80
     networks:
@@ -77,6 +79,11 @@ services:
         - "${MAIL_SMTP_PORT}:1025"
         - "${MAIL_HTTP_PORT}:8025"
     container_name: ${PROJECT_NAME}-mailhog
+    networks:
+      - formation
+
+  redis:
+    image: redis:8.4-rc1-alpine
     networks:
       - formation
 

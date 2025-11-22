@@ -19,6 +19,7 @@ db
 # Except the theme
 !/web/wp-content/themes/mon_theme/
 !/web/wp-content/themes/mon_theme/acf-json
+!/web/wp-content/themes/library/
 
 # Except plugins folder
 !/web/wp-content/plugins/

@@ -30,3 +30,6 @@ RUN touch /var/log/wordpress.log && \
 # Repertoire pour le cache disque d'opcache
 RUN mkdir -p /var/cache/opcache && \
     chown me:me /var/cache/opcache
+
+
+RUN a2enmod headers

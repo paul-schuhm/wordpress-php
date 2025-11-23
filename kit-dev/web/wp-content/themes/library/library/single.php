@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Template pour la page d'accueil du site
+ * Template pour afficher une actualité (post)
  *
  * @package BM
  */

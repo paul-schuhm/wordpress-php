@@ -28,6 +28,7 @@
 
 ## Liens utiles
 
+- [Documentation pour les développeur·ses](https://developer.wordpress.org), portail de la documentation officielle pour développer les thèmes et les plugins WordPress, bonnes pratiques, sécurité, etc.
 - [Make Wordpress](https://make.wordpress.org/), hub centralisé officiel des ressources pour les développeur·ses Wordpress;
 
 ### Création de thèmes

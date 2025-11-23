@@ -7,7 +7,10 @@
 
 ?>
 
+<!-- div#main-content -->
+</div> 
 <footer>
+	<small>
 		&copy; Copyright <?php esc_html_e( date( 'Y' ) ); ?>
 	</small>
 </footer>

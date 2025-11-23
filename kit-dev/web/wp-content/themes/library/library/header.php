@@ -9,7 +9,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,5 +17,15 @@
 </head>
 <body <?php body_class(); ?>>
 	<header>
-		<!-- Navbar (à venir) -->
+		<?php
+		$args = array(
+			'theme_location' => 'primary',
+			'menu_class'     => 'nav-menu',
+			'container'      => 'nav',
+			'before'         => 'foo',
+			'link_before'    => 'bar',
+		);
+		wp_nav_menu( $args );
+		?>
 	</header>
+<div id="main-content" class="main-content">

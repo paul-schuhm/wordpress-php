@@ -19,3 +19,4 @@
 	<header>
 		<h1>Promo spéciale sur tous nos abonnements !</h1>
 	</header>
+<div id="main-content" class="main-content">

@@ -7,14 +7,13 @@ services:
       dockerfile: Dockerfile-wp
     depends_on:
       - db
-      - redis
     restart: always
     user: "${UID}:${GID}"
     env_file:
       - .env
     volumes:
       - ./web/:/var/www/html/:rw
-      - ./php-wordpress.ini:/usr/local/etc/php/conf.d/php-wordpress.ini:ro
+      - ./acf-json:/var/www/html/wp-content/acf-json/:rw
     ports:
       - 8080:80
     networks:
@@ -29,6 +28,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - 8087:3306
     volumes:
       - ./db:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d
@@ -79,11 +80,6 @@ services:
         - "${MAIL_SMTP_PORT}:1025"
         - "${MAIL_HTTP_PORT}:8025"
     container_name: ${PROJECT_NAME}-mailhog
-    networks:
-      - formation
-
-  redis:
-    image: redis:8.4-rc1-alpine
     networks:
       - formation
 

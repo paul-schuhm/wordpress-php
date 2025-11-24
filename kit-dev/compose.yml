@@ -15,6 +15,7 @@ services:
     volumes:
       - ./web/:/var/www/html/:rw
       - ./php-wordpress.ini:/usr/local/etc/php/conf.d/php-wordpress.ini:ro
+      - ./acf-json:/var/www/html/wp-content/acf-json/:rw
     ports:
       - 8080:80
     networks:

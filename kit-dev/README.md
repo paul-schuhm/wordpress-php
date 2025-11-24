@@ -100,7 +100,9 @@ Dé-commenter pour générer volontairement une erreur et vérifier que les erre
 
 ### ACF Local JSON
 
-Quand le plugin est installé, il enregistre ses champs en local JSON, dans le répertoire acf-json à la racine du projet. 
+Quand le plugin ACF est installé, il enregistre ses champs [en local JSON](https://www.advancedcustomfields.com/resources/local-json/), dans le répertoire `acf-json` à la racine du projet. 
+
+Vous pouvez ainsi facilement les versionner au besoin.
 
 > La configuration d'ACF a lieu dans le mu plugin [ps-wp-from.php](web/wp-content/mu-plugins/ps-wp-from.php)
 

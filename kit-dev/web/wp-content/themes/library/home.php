@@ -1,3 +1,3 @@
 <?php
 
-dump("home.php : Liste des articles");
+var_dump("home.php : Liste des articles");

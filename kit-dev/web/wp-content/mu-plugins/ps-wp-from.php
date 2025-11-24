@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Définit l'adresse email d’expéditeur du site WordPress
  * 
@@ -26,3 +27,31 @@ function ps_wp_mail_from(): string
 }
 
 add_filter('wp_mail_from', 'ps_wp_mail_from');
+
+
+/**
+ * Configurer les points de chargement et de sauvegarde des champs ACF (mode Local JSON)
+ * @link: https://www.advancedcustomfields.com/resources/local-json/
+ */
+if (function_exists('get_field')) {
+
+    //Personnaliser le point de sauvegarde du JSON.
+    function ps_acf_json_save_point($path)
+    {
+        return WP_CONTENT_DIR . '/acf-json';
+    }
+    add_filter('acf/settings/save_json', 'ps_acf_json_save_point');
+
+    //Personnaliser le point de chargement du JSON.
+    function ps_json_load_point($paths)
+    {
+        // Remove the original path (optional).
+        unset($paths[0]);
+
+        // Append the new path and return it.
+        $paths[] = WP_CONTENT_DIR . '/acf-json';
+
+        return $paths;
+    }
+    add_filter('acf/settings/load_json', 'ps_json_load_point');
+}

@@ -1,4 +1,4 @@
 <?php
 
 
-dump("Home : Bibliothèque municipale");
+var_dump("Home : Bibliothèque municipale");

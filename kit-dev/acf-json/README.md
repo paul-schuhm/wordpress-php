@@ -1,11 +1,5 @@
 # ACF Local JSON
 
-On enregitrera les champs ACF en local ici.
+Les champs ACF sont enregistrés en local ici.
 
-Penser à personnaliser les points d'enregistrement et de chargement d'ACF :
-
-~~~php
-
-
-
-~~~
+> [En savoir plus](https://www.advancedcustomfields.com/resources/local-json/)

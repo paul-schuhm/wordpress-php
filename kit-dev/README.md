@@ -6,7 +6,9 @@
   - [Lancer le projet](#lancer-le-projet)
   - [Arrêter le projet](#arrêter-le-projet)
   - [Création de la base de données](#création-de-la-base-de-données)
-  - [Configuration de WordPress (**mode Debug**)](#configuration-de-wordpress-mode-debug)
+  - [Configuration de WordPress](#configuration-de-wordpress)
+    - [Debug Mode](#debug-mode)
+    - [ACF Local JSON](#acf-local-json)
   - [Compilation des assets avec Gulp](#compilation-des-assets-avec-gulp)
   - [wp-cli](#wp-cli)
   - [Environnement de test pour l'envoi d'emails, avec Mailhog](#environnement-de-test-pour-lenvoi-demails-avec-mailhog)
@@ -76,7 +78,9 @@ docker compose down
 
 La base de données `wordpress` est créée automatiquement par le service `db`.
 
-## Configuration de WordPress (**mode Debug**)
+## Configuration de WordPress 
+
+### Debug Mode
 
 Placer ces instructions dans le fichier `web/wp-config.php` :
 
@@ -93,6 +97,12 @@ define('WP_DEBUG_DISPLAY', true); // empêche l’affichage à l’écran
 Dé-commenter pour générer volontairement une erreur et vérifier que les erreurs sont bien log dans `/var/log/wordpress.log`.
 
 > Ces erreurs arrivent **avant** que `wp-settings.php` soit chargé et redéfinisse un gestionnaire d'erreurs pour rediriger les logs vers le système de WordPress (`wp-content/debug.log`). 
+
+### ACF Local JSON
+
+Quand le plugin est installé, il enregistre ses champs en local JSON, dans le répertoire acf-json à la racine du projet. 
+
+> La configuration d'ACF a lieu dans le mu plugin [ps-wp-from.php](web/wp-content/mu-plugins/ps-wp-from.php)
 
 ## Compilation des assets avec Gulp
 

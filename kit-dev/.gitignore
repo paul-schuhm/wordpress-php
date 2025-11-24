@@ -1,8 +1,23 @@
+# Exclude all temporary or local files
+.env
+.sass-cache
+node_modules/*
+.DS_Store
+.idea/
+.phpdoc
+_notes
+
+# Exclude vendor
+vendor
+
 # Exclude all /web
 web/*
 
-# Excluse mysql volume
+# Exclude mysql volume
 db
+
+# Exclude acgf-json data
+acf-json/*.json
 
 # Except /web/wp-content/
 !/web/wp-content/
@@ -18,25 +33,12 @@ db
 
 # Except the theme
 !/web/wp-content/themes/mon_theme/
-!/web/wp-content/themes/mon_theme/acf-json
 
 # Except plugins folder
 !/web/wp-content/plugins/
 # Exclude mu plugins
 /web/wp-content/plugins/*
 !/web/wp-content/mu-plugins
-
-# Exclude all temporary or local files
-.env
-.sass-cache
-node_modules/*
-.DS_Store
-.idea/
-.phpdoc
-_notes
-
-# Exclude vendor
-vendor
 
 # Exclude local-ressource content
 local-ressources

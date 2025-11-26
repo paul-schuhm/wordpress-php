@@ -14,7 +14,6 @@
     - [WordPress](#wordpress)
     - [PHP](#php-1)
 
-
 ## Kit de développement
 
 [Accéder au kit de développement](./kit-dev/), et suivre les instructions
@@ -45,20 +44,22 @@
 
 ### PHP
 
-- [Veille PHP](https://github.com/paul-schuhm/veille-php), un ensemble de ressources et d'articles pour faire de la veille sur l'écosystème PHP 
+- [Veille PHP](https://github.com/paul-schuhm/veille-php), un ensemble de ressources et d'articles pour faire de la veille sur l'écosystème PHP
 
 ## Bibliographie pour aller plus loin
 
-<img width=200 src="./assets/polar-book.png"><img width=200 src="./assets/wordpress.jpg"><img width=200 src="./assets/modernphp.jpeg">
+<img width=200 src="./assets/polar-book.png"><img width=200 src="./assets/wordpress.jpg"><img width=200 src="./assets/modernphp.jpeg"><img width=200 src="./assets/wordpress-dev-book.png"><img width=200 src="./assets/wordpress-plugins-book.png">
 
 ### CMS et architecture de l'information
 
--  [Information Architecture for the World Wide Web 3rd Edition](https://www.oreilly.com/library/view/information-architecture-for/0596527349/), de Peter Morville et Louis Rosenfeld, publié chez O'Reilly Media, 2006; **LP++**
+- [Information Architecture for the World Wide Web 3rd Edition](https://www.oreilly.com/library/view/information-architecture-for/0596527349/), de Peter Morville et Louis Rosenfeld, publié chez O'Reilly Media, 2006; **LP++**
 
 ### WordPress
 
-- [Professional WordPress: Design and Development, 3rd Edition](https://www.amazon.com/Professional-WordPress-Development-Brad-Williams/dp/1118987241) de Brad Williams et David Damstra, publié aux éditions Wrox (Wiley), 2015; **LP+**
-- [Professional WordPress Plugin Development, 2nd edition](https://www.amazon.com/Professional-WordPress-Plugin-Development-2nd/dp/1119666945) de Brad Williams et Justin Taldock, publié aux éditions Wrox (Wiley), 2020;
+> Ces deux ouvrages sont, à ma connaissance les meilleurs ouvrages, adressés aux développeur/ses WordPress.
+
+- [Professional WordPress: Design and Development, 3rd Edition](https://www.amazon.com/Professional-WordPress-Development-Brad-Williams/dp/1118987241) de Brad Williams et David Damstra, publié aux éditions *Wrox* (éditeur [Wiley](https://fr.wikipedia.org/wiki/John_Wiley_%26_Sons)), 2015. **Très bon ouvrage** pour bien comprendre **le core de WordPress, son fonctionnement et les différentes API**. Couvre de **nombreuses notions essentielles de WordPress qui n'ont pas bougées depuis**. Ce livre est donc aujourd'hui **toujours utile** et toujours pertinent (seules quelques petites parties non centrales aujourd'hui désuètes, notamment sur l'écosystème WordPress qui a un peu changé) **Publié avec l'intégration des blocs et de Gutemberg**. Sur les thèmes, couvre uniquement le développement de **thèmes classiques**, pas ceux basés sur des blocs, ni le *Full Site Editing*. **LP+**
+- [Professional WordPress Plugin Development, 2nd edition](https://www.amazon.com/Professional-WordPress-Plugin-Development-2nd/dp/1119666945) de Brad Williams et Justin Taldock, publié aux éditions Wrox (Wiley), 2020. **Excellent ouvrage à avoir auprès de soi** lors de développement de plugins, et pour se rafraichir la mémoire sur l'API des Hooks. Publié à la version 7 de PHP. **LP++**
 
 ### PHP
 

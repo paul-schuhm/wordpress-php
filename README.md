@@ -51,6 +51,8 @@
 ### PHP
 
 - [Veille PHP](https://github.com/paul-schuhm/veille-php), un ensemble de ressources et d'articles pour faire de la veille sur l'écosystème PHP
+- [Le code profiling, une technique pour améliorer les performances de votre PHP](https://bearstech.com/societe/blog/php-profiling), publié par [Bearstech](https://bearstech.com/)
+
 
 ## Bibliographie pour aller plus loin
 

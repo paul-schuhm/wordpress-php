@@ -63,5 +63,5 @@
 
 ### PHP
 
-- [Modern PHP: new features and good practices](https://www.oreilly.com/library/view/modern-php/9781491905173/), Josh Lochart, Edition O'REILLY, 2015. Excellent livre présentant la pratique du PHP *moderne* (>= PHP 5) **LP++**;
+- [Modern PHP: new features and good practices](https://www.oreilly.com/library/view/modern-php/9781491905173/), Josh Lochart, Edition O'REILLY, 2015. **Excellent** livre présentant les features et la pratique du PHP *moderne* (>= PHP 7) : Namespaces, Composer (*autoloading* PSR-4 et gestionnaire de dépendances), déploiement avec PHP-FPM, configuration de la VM PHP pour la production, etc. **LP++**;
 - [Essential PHP Security](https://www.oreilly.com/library/view/essential-php-security/059600656X/), Chris Shiflett, O'Reilly Media, Inc., 2005. Excellente introduction à la sécurité des applications web et des applications web PHP en particulier, **concis** (moins de 100 pages !). **LP+**;

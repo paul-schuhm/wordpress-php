@@ -46,6 +46,7 @@
 ### Hooks
 
 - [WordPress Hooks Database](https://adambrown.info/p/wp_hooks), **une base de données de tous les hooks de chaque version de WordPress**, maintenue depuis des années par [Adam R Brown](https://adambrown.info/). **Très pratique**. Permet de consulter tous les hooks, leur évolution, leur utilisation dans le code source du *core* et leurs hooks associés. [Consulter par exemple la base des hooks de WordPress 6.7](https://adambrown.info/p/wp_hooks/version/6.7)
+- [WordPress Hooks](https://developer.wordpress.org/plugins/hooks/), section de la documentation officielle dédiée aux hooks. Guide et documentation de référence.
 
 ### PHP
 

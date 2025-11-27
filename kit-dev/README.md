@@ -155,21 +155,49 @@ wp cli version
 
 ## Coding standards WordPress avec PHP_CodeSniffer
 
-Le kit utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par le *linter* [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer/) (celui-ci doit être installé globalement, ainsi que le standard). 
+Le kit utilise [les codings standards PHP de WordPress](https://github.com/WordPress/WordPress-Coding-Standards), appliqués par le *linter* [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer/) :
 
-On peut installer les extensions [phpcs](https://marketplace.visualstudio.com/items?itemName=shevaua.phpcs) et [phpcbf](https://marketplace.visualstudio.com/items?itemName=persoderlind.vscode-phpcbf) pour intégrer le linter **directement dans VS Code**, en tant que formateur par défaut.
+Utilisation manuelle via la CLI, à la racine du projet :
 
-Sinon manuellement :
+~~~bash
+#Lister les coding standards installés, verifier que les coding standards de WordPress y figurent
+./vendor/bin/phpcs -i
+~~~
+
+
+**Recommandé** : pour intégrer PHP CodeSniffer **directement dans VS Code**, et **l'utiliser en tant que formateur de code par défaut** :
+
+1. Installer l'extension [PHP Sniffer and Beautifier](https://open-vsx.org/extension/ValeryanM/vscode-phpsab);
+2. Activer l'extension;
+3. Ouvrir les `settings.json` de VS Code pour y renseigner les coding standards à utiliser par défaut :
+
+	~~~json
+	{
+	    //Dire à phpcs et phpcbf d'utiliser par défaut les coding standards de WordPress	
+	    "phpsab.standard": "WordPress"
+	}
+	~~~
+
+4. Ouvrir la palette de commandes : `Ctr + Shift + P`
+5. Choisir `Format Document With...`
+6. Choisir `PHP Sniffer and Beautifier` (à la place d'Intelephense)
+
+
+Utilisation manuelle (à intégrer dans une pipeline CI/CD) :
 
 ~~~bash
 # Linter votre theme
 ./vendor/bin/phpcs --standard=WordPress web/wp-content/themes/mon-theme
 ./vendor/bin/phpcbf --standard=WordPress web/wp-content/themes/mon-theme
 
-#Linter vos plugins
+# Linter vos plugins
 ./vendor/bin/phpcs --standard=WordPress web/wp-content/plugins/mon-plugin
 ./vendor/bin/phpcbf --standard=WordPress web/wp-content/themes/mon-theme
+
+//Affiche un code différent de 0 si un problème est trouvé
+echo $?
 ~~~
+
 
 ## Analyse statique du code
 
